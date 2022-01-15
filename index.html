@@ -1,115 +1,87 @@
-<var>$text = "ocean"</var>
-<div id="ui">
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-</div><style>
-  // Please change your favorite font-size!
-$fontSize: 15rem;
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			/* Global ------------------------------------------------------ */
+
+			html {
+			  overflow: hidden; /*FF fix*/
+			  height: 100%;
+			  font-family: Geneva, sans-serif;
+			  background: hsl(210, 30%, 0%) radial-gradient( hsl(210, 30%, 20%), hsl(210, 30%, 0%));
+			}
+
+			body {
+			  margin: 0;
+			  width: 100%;
+			  height: 100%;
+			  text-align: center;
+
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+
+			p {
+				margin: 0;
+			}
 
 
+			/* box ------------------------------------------------------ */
 
-body {
-  background: rgba(10, 20, 40, 1);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 500px;
-}
+			#box {
+			  padding: 100px;
+			  text-align: center;
+			  min-width: 500px;
+			  font-size: 3em;
+			  font-weight: bold;
+			  -webkit-backface-visibility: hidden; /* fixes flashing */
+			}
 
-div {
-  will-change: transform;
-}
 
-#ui {
-  transform-style: preserve-3d;
-  .text {
-    position: absolute;
-    font-size: $fontSize;
-    color: #fff;
-    line-height: $fontSize;
-    font-family: 'Anton', sans-serif;
-    padding: 20px 0;
-    mix-blend-mode: screen;
-    transform-style: preserve-3d;
-    @for $i from 1 through 26 {
-      $key: $i - 1;
-      $param: 5;
-      &:nth-child(#{$i}) {
-        clip-path: polygon(
-          -30% + ($key * $param) 0,
-          -20% + ($key * $param) 0,
-          20% + ($key * $param) 100%,
-          0% + ($key * $param) 100%
-        );
-        animation: wave 2000ms $key * 200 - 10000ms ease-in-out infinite alternate;
-      }
-    }
-  }
-}
+			/* flashlight ------------------------------------------------------ */
 
-@keyframes wave {
-  0% {
-    transform: translate(-50%, -50%) scale(0.9) rotateX(20deg) rotateY(20deg) rotateZ(0deg);
-    color: rgba(0, 30, 100, 1);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.1) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-    color: rgba(50, 230, 255, 1);
-  }
-}
-</style>
-<var>$text = "ocean"</var>
-<div id="ui">
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-</div>
+			#flashlight {
+			  color: hsla(0,0%,0%,0);
+			  perspective: 80px;
+			  outline: none;
+			}
+
+
+			/* flash ------------------------------------------------------ */
+
+			#flash {
+			  display: inline-block;
+			  text-shadow: #bbb 0 0 1px, #fff 0 -1px 2px, #fff 0 -3px 2px, rgba(0,0,0,0.8) 0 30px 25px;
+			  transition: margin-left 0.3s cubic-bezier(0, 1, 0, 1);
+			}
+
+			#box:hover #flash {
+			  margin-left: 20px;
+			  transition: margin-left 1s cubic-bezier(0, 0.75, 0, 1);
+			}
+
+
+			/* light ------------------------------------------------------ */
+
+			#light {
+			  display: inline-block;
+			  text-shadow: #111 0 0 1px, rgba(255,255,255,0.1) 0 1px 3px;
+			}
+
+			#box:hover #light {
+			  text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+			  transform: rotateY(-60deg);
+			  transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p id="flashlight">
+				<span id="flash">HOIDBERG</span>
+				<span id="light">LINTING</span>
+			</p>
+		</div>
+	</body>
+</html>
